@@ -24,7 +24,7 @@ public class ModuleSelectionPageTest extends Base {
         super();
     }
 
-
+    // Launches browser and executes before every Method in the class
     @BeforeMethod
     public void setUp() {
     LaunchBrowser();
@@ -53,6 +53,7 @@ public class ModuleSelectionPageTest extends Base {
     * verifyTotalContributionPerMonthBasis()
     * ----------------------------------------------------------------------------
     * */
+
     @Test
     public void verifySetDataModuleSelection_Basis() {
         moduleSelectionPage.setDataModuleSelection_Basis();

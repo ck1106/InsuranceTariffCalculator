@@ -1,6 +1,7 @@
 package com.allianztarrifcalculator.qa.testcases;
 
 import com.allianztarrifcalculator.qa.base.Base;
+import com.allianztarrifcalculator.qa.dataprovider.dataprovider;
 import com.allianztarrifcalculator.qa.pageobjects.BasicDataPage;
 import com.allianztarrifcalculator.qa.pageobjects.HomePage;
 import com.allianztarrifcalculator.qa.pageobjects.ModuleSelectionPage;
@@ -18,30 +19,28 @@ public class BasicDataPageTest extends Base {
     BasicDataPage basicDataPage;
     ModuleSelectionPage moduleSelectionPage;
 
+
     public BasicDataPageTest(){
         super();
     }
 
 
+    // Launches browser and executes before every Method in the class
     @BeforeMethod
     public void setUp(){
         LaunchBrowser();
 
-        homePage = new HomePage();
-        basicDataPage = new BasicDataPage();
-        moduleSelectionPage = new ModuleSelectionPage();
-        homePage.acceptCookieNow();
-        basicDataPage = homePage.clickOnCalculateNow();
+        homePage = new HomePage(); // HomePage object
+        basicDataPage = new BasicDataPage();// Basic Data page object
+        moduleSelectionPage = new ModuleSelectionPage();// Module selection page object
+        homePage.acceptCookieNow();//  Accepts all cookies
+        basicDataPage = homePage.clickOnCalculateNow();// Clicks on clickOnCalculateNow button and returns Basic DataPage
     }
 
 
-    @Test
-    public void VerifySetCustomerBasicInfo() {
-        moduleSelectionPage = basicDataPage.setCustomerBasicInfo(
-                prop.getProperty("BasicPostCodeNumber"),
-                prop.getProperty("BasicStreetNumber"),
-                prop.getProperty("BasicSpaceSizeNumber"),
-                prop.getProperty("BasicDateOfBirth"));
+    @Test(dataProvider = "basicdataprovider", dataProviderClass = dataprovider.class)
+    public void VerifySetCustomerBasicInfo(String postNum,	String streetNum,  String spaceSize, String DOB) {
+        moduleSelectionPage = basicDataPage.setCustomerBasicInfo(postNum, streetNum, spaceSize, DOB);
     }
 
     @Test(enabled = false)

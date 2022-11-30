@@ -23,6 +23,7 @@ public class HomePageTest extends Base {
     }
 
 
+    // Launches browser and executes before every Method in the class
     @BeforeMethod
     public void setUp(){
     LaunchBrowser();
@@ -46,12 +47,12 @@ public class HomePageTest extends Base {
 
     @Test
     public void ClickOnCalculateTariffNow(){
-        Log.startTestCase("ClickOnCalculateTariffNow");
+        //Log.startTestCase("ClickOnCalculateTariffNow");
         homePage.acceptCookieNow();
-        Log.info("Clicking on Calculate Now Button");
+       // Log.info("Clicking on Calculate Now Button");
         basicDataPage = homePage.clickOnCalculateNow();
-        Log.info("user successfully clicked on the button");
-        Log.endTestCase("ClickOnCalculateTariffNow");
+        //Log.info("user successfully clicked on the button");
+        //Log.endTestCase("ClickOnCalculateTariffNow");
 
     }
 }

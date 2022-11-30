@@ -163,60 +163,60 @@ public class ModuleSelectionPage extends action {
 
 
     public ModuleSelectionPage(){
-        PageFactory.initElements(getDriver(), this);
+        PageFactory.initElements( getDriver(),this);
     }
 
     public void setDataModuleSelection_Basis(){
-        click(getDriver(),paymentScheduleDrpDwn);
-        click(getDriver(),monthlySchedule);
-        click(getDriver(),coverageSuggestionDrpDwn);
-        click(getDriver(),recommendedCov);
-        click(getDriver(),retentionDrpDwn);
-        click(getDriver(),retentionValue150);
+        click(paymentScheduleDrpDwn);
+        click(monthlySchedule);
+        click(coverageSuggestionDrpDwn);
+        click(recommendedCov);
+        click(retentionDrpDwn);
+        click(retentionValue150);
         scrollNow();
-        fluentWait(getDriver(), basisChooseBtn,tOut);
-        click(getDriver(), basisChooseBtn);
-        isEnabled(getDriver(), basisChooseBtn);
+        fluentWait (basisChooseBtn,tOut);
+        action.click(basisChooseBtn);
+        action.isEnabled(basisChooseBtn);
     }
 
 
     public void setCustomerDataModuleSelection_Comfort(){
-        click(getDriver(),paymentScheduleDrpDwn);
-        click(getDriver(),halfYearSchedule);
-        click(getDriver(),coverageSuggestionDrpDwn);
-        click(getDriver(),recommendedCov);
-        click(getDriver(),retentionDrpDwn);
-        click(getDriver(),retentionValue500);
+        click(paymentScheduleDrpDwn);
+        click(halfYearSchedule);
+        click(coverageSuggestionDrpDwn);
+        click(recommendedCov);
+        click(retentionDrpDwn);
+        click(retentionValue500);
         scrollNow();
-        fluentWait(getDriver(), comfortChooseBtn,tOut);
-        click(getDriver(), comfortChooseBtn);
-        isEnabled(getDriver(), comfortChooseBtn);
+        fluentWait(comfortChooseBtn,tOut);
+        click(comfortChooseBtn);
+        isEnabled(comfortChooseBtn);
     }
 
 
     public void setDataModuleSelection_Smart(){
-        click(getDriver(),paymentScheduleDrpDwn);
-        click(getDriver(),quarterlySchedule);
-        click(getDriver(),coverageSuggestionDrpDwn);
-        click(getDriver(),recommendedCov);
-        click(getDriver(),retentionDrpDwn);
-        click(getDriver(),retentionValue300);
+        click(paymentScheduleDrpDwn);
+        click(quarterlySchedule);
+        click(coverageSuggestionDrpDwn);
+        click(recommendedCov);
+        click(retentionDrpDwn);
+        click(retentionValue300);
         scrollNow();
-        fluentWait(getDriver(), smartChooseBtn,tOut);
-        click(getDriver(), smartChooseBtn);
-        isEnabled(getDriver(), smartChooseBtn);
+        fluentWait(smartChooseBtn,tOut);
+        click (smartChooseBtn);
+        isEnabled(smartChooseBtn);
     }
 
 
     public void setCustomerDataModuleSelection_Premium(){
-        click(getDriver(),paymentScheduleDrpDwn);
-        click(getDriver(),YearlySchedule);
-        click(getDriver(),coverageSuggestionDrpDwn);
-        click(getDriver(),recommendedCov);
-        click(getDriver(),retentionDrpDwn);
-        click(getDriver(),retentionValue1000);
+        click(paymentScheduleDrpDwn);
+        click(YearlySchedule);
+        click(coverageSuggestionDrpDwn);
+        click(recommendedCov);
+        click(retentionDrpDwn);
+        click(retentionValue1000);
         scrollPrem();
-        click(getDriver(), premiumChooseBtn);
+        click( premiumChooseBtn);
 
     }
 
@@ -225,7 +225,7 @@ public class ModuleSelectionPage extends action {
     public double getSumInsuredBasic(){
         setDataModuleSelection_Basis();
         scrollMed();
-        fluentWait(getDriver(),sumInsuredBasic,10);
+        fluentWait(sumInsuredBasic,10);
         String sumInsured_amount= sumInsuredBasic.getText();
         String actualSumInsured_amount= sumInsured_amount.replaceAll("[€]", "");
         double finalSumInsured_amount = Double.parseDouble(actualSumInsured_amount);
@@ -330,7 +330,7 @@ public class ModuleSelectionPage extends action {
     public boolean addAdditionalPackageBasicSmart(){
         setDataModuleSelection_Basis();
         scrollMedio();
-        isEnabled(getDriver(),ext_weather_protectionBtn);
+        isEnabled(ext_weather_protectionBtn);
         return true;
     }
 
@@ -354,7 +354,7 @@ public class ModuleSelectionPage extends action {
 
 
     public double getAdditonalModuleAmount_1(){
-        fluentWait(getDriver(), additionalPack1amount, 8);
+        fluentWait( additionalPack1amount, 8);
         String additionalModule1_amount = additionalPack1amount.getText();
         String actualAdditionalModule1_amount =additionalModule1_amount.replaceAll("[^a-zA-Z0-9]", "");
         double finalAdditionalModule1_amount= Double.parseDouble(actualAdditionalModule1_amount);
@@ -450,7 +450,7 @@ public class ModuleSelectionPage extends action {
         setCustomerDataModuleSelection_Premium();
         scrollHigh();
         hold();
-        //fluentWait(getDriver(), totalContributionMonthly, 8);
+        //fluentWait( totalContributionMonthly, 8);
         String yourTotalContribution_amount = totalContributionMonthlyPremium.getText();
         String actualTotalContribution_amount = yourTotalContribution_amount.replaceAll("[^a-zA-Z0-9]", "");
         double finalTotalContribution_amount= Double.parseDouble(actualTotalContribution_amount );

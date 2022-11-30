@@ -29,16 +29,15 @@ public class Base {
     //public static WebDriver driver;
 
 
-    public static Properties prop;
-
-    //Declaring threadLocal Driver for parallel execution
-    public static ThreadLocal<RemoteWebDriver> driver= new ThreadLocal<>();
+    public static Properties prop; //creating properties object
+    public static ThreadLocal<RemoteWebDriver> driver= new ThreadLocal<>();  //Declaring threadLocal Driver for parallel execution
 
     //Get driver from threadLocalMap
     public static WebDriver getDriver(){
         return driver.get();
     }
 
+    //initializing log4j environments :: extent report
     @BeforeSuite
     public void beforeSuite(){
         DOMConfigurator.configure("log4j.xml");
@@ -61,14 +60,15 @@ public class Base {
         }
     }
 
-    //Launching Browser
+    /*=========================SETTING UP AND LAUNCHING BROWSER =========================================*/
     public static void LaunchBrowser() {
-        String browserName = prop.getProperty("browser");
+        String browserName = prop.getProperty("browser1");
         if (browserName.equalsIgnoreCase("chrome")) {
-            WebDriverManager.chromedriver().setup();
-            //System.setProperty("webdriver.chrome.driver", "chrome/chromedriver.exe");
+             WebDriverManager.chromedriver().setup();
+             driver.set(new ChromeDriver());
+           //System.setProperty("webdriver.chrome.driver", "chrome/chromedriver.exe");
+             // driver.set(new ChromeDriver());
             //driver = new ChromeDriver();
-            driver.set(new ChromeDriver());
 
         } else if (browserName.equalsIgnoreCase("Firefox")) {
             WebDriverManager.firefoxdriver().setup();
@@ -84,15 +84,16 @@ public class Base {
         action.pageLoadTimeOut(getDriver());
         action.implicitWait(getDriver());
         action.launchUrl(getDriver(),prop.getProperty("url"));
-
     }
 
+    /*=========EXECUTES AFTER EVERY METHOD IN A CLASS : .quit()  closes all browser windows and ends the WebDriver session =========================================*/
     @AfterMethod
     public void tearDown()
     {
-     getDriver().quit();
+      getDriver().quit();
     }
 
+    /*   EXECUTES AFTER .XML SUITES    */
     @AfterSuite
     public void afterSuite(){
         ExtentManager.endReport();

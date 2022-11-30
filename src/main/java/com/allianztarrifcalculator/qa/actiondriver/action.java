@@ -54,14 +54,12 @@ public class action extends Base {
     }
 
 
-    public static void click(WebDriver driver, WebElement ele) {
-        Actions act = new Actions(driver);
-        act.moveToElement(ele).click().build().perform();
+    public static void click( WebElement ele) {
+        Actions act = new Actions(getDriver());
+        act.moveToElement(ele).click().build().perform(); //insert .build
     }
+    public static boolean findElement( WebElement ele) {
 
-
-
-    public static boolean findElement(WebDriver driver, WebElement ele) {
         boolean flag = false;
         try {
             ele.isDisplayed();
@@ -81,9 +79,9 @@ public class action extends Base {
     }
 
 
-    public static boolean isDisplayed(WebDriver driver, WebElement ele) {
+    public static boolean isDisplayed( WebElement ele) {
         boolean flag = false;
-        flag = findElement(driver, ele);
+        flag = findElement(ele);
         if (flag) {
             flag = ele.isDisplayed();
             if (flag) {
@@ -98,9 +96,9 @@ public class action extends Base {
     }
 
 
-    public boolean isSelected(WebDriver driver, WebElement ele) {
+    public boolean isSelected(WebElement ele) {
         boolean flag = false;
-        flag = findElement(driver, ele);
+        flag = findElement(ele);
         if (flag) {
             flag = ele.isSelected();
             if (flag) {
@@ -115,9 +113,9 @@ public class action extends Base {
     }
 
 
-    public boolean isEnabled(WebDriver driver, WebElement ele) {
+    public static boolean isEnabled(WebElement ele) {
         boolean flag = false;
-        flag = findElement(driver, ele);
+        flag = findElement(ele);
         if (flag) {
             flag = ele.isEnabled();
             if (flag) {
@@ -720,14 +718,13 @@ public class action extends Base {
     }
 
 
-    public String getTitle(WebDriver driver) {
+    public static String getTitle() {
         boolean flag = true;
-
-        String text = driver.getTitle();
+        String title = getDriver().getTitle();
         if (flag) {
-            System.out.println("Title of the page is: \""+text+"\"");
+            System.out.println("Title of the page is: \""+title+"\"");
         }
-        return text;
+        return title;
     }
 
 
@@ -762,10 +759,10 @@ public class action extends Base {
 
 
 
-    public static boolean fluentWait(WebDriver driver, WebElement element, int timeOut) {
+    public static boolean fluentWait( WebElement element, int timeOut) {
         Wait<WebDriver> wait = null;
         try {
-            wait = new FluentWait<WebDriver>((WebDriver) driver)
+            wait = new FluentWait (getDriver())
                     .withTimeout(Duration.ofSeconds(20))
                     .pollingEvery(Duration.ofSeconds(2))
                     .ignoring(Exception.class);
@@ -786,8 +783,8 @@ public class action extends Base {
     }
 
 
-        public void explicitWait(WebDriver driver, WebElement element ) {
-            WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
+        public static void explicitWait( WebElement element ) {
+            WebDriverWait wait = new WebDriverWait(getDriver(),Duration.ofSeconds(20));
             wait.until(ExpectedConditions.visibilityOf(element));
         }
 
